@@ -2,7 +2,8 @@ import path from 'path';
 import ts from 'typescript';
 import _ from 'lodash';
 import fs from 'fs';
-import { interfaceKeeper } from '../interface-decorator';
+import { interfaceKeeper } from '../transformers/interface-decorator';
+import { transformer } from '../transformers/file.transformer'
 
 const filePath = path.resolve(_.first(process.argv.slice(2))!);
 
@@ -13,9 +14,9 @@ const printer = ts.createPrinter();
 
 // Run source file through our transformer
 // TODO - make interfaceKeeper in to a class with the tokenEnums field set after transforming
-const result = ts.transform(source!, [interfaceKeeper(checker)]);
+const result = ts.transform(source!, [transformer(program)]);
 
-import { tokensEnum } from '../interface-decorator';
+import { tokensEnum } from '../transformers/interface-decorator';
 const tokensResult = ts.transform(tokensEnum, []);
 
 // Create our output folder

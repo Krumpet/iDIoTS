@@ -1,3 +1,4 @@
+import { inject } from "tsyringe";
 class Omg {
     constructor(private concrete: Concrete, 
     @inject("ToBeImplemented")
