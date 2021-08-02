@@ -6,16 +6,22 @@ class Omg {
 
 class Concrete {}
 
-@Injectable()
+/**
+ * @retain
+ */
 interface ToBeImplemented {
     id: number;
     name: string;
 }
 
-@Injectable()
+/** @retain */
 export interface AnotherInterface {
     PIN: number;
     pass: string;
+}
+
+interface NotRetained {
+    blah: number;
 }
 
 function Injectable() {
